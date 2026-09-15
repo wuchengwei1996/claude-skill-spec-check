@@ -4,6 +4,8 @@ English · [繁體中文](README.md)
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) ![Claude Code skill](https://img.shields.io/badge/Claude_Code-skill-blue)
 
+First published 2026-09-15 · Last synced 2026-09-15
+
 **Before a spec is finalized, let several independent AI agents pick it apart, then you decide. The output is a change plan — the skill never edits your spec.**
 
 > The skill body (`SKILL.md`) is written in Traditional Chinese. Claude reads it fine regardless of the language you chat in; this README tells you what it does and how to install it.

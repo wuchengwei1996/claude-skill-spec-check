@@ -4,6 +4,8 @@
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg) ![Claude Code skill](https://img.shields.io/badge/Claude_Code-skill-blue)
 
+首次上傳 2026-09-15 · 最後同步 2026-09-15
+
 **spec 定稿前，先讓幾個獨立的 AI agent 分頭找碴，最後由你裁決——產出是一份「修改計畫」，不是直接改你的 spec。**
 
 ## 什麼是 skill？
