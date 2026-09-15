@@ -1,4 +1,6 @@
 .DS_Store
+.pytest_cache/
+__pycache__/
 
 # claude plugin eval 產物：結果目錄，以及 replay case 每次執行寫回的 session jsonl
 evals/results/
