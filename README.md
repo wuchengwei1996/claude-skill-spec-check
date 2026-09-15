@@ -80,7 +80,7 @@ git clone https://github.com/wuchengwei1996/claude-skill-spec-check.git ~/.codex
 >
 > **你**：沒漏，直接跑。
 >
-> **Claude**：（派出 3 個 agents，各自讀 context-pack 與 spec，幾分鐘後回報）
+> **Claude**：（派出 3 個 agents，各自讀 context-pack（步驟 1 產的素材摘要檔）與 spec，幾分鐘後回報）
 > 彙整完了，修改計畫已落檔 `docs/specs/2026-09-15-退款流程-design-修改計畫.md`。
 > 需要你裁決的有 2 項（排最前）：
 > 🔴 §3.2「退款逾七天自動核准」與 §5 驗收條件矛盾——不修的話，實作者會二選一，測試永遠有一邊紅。before → after 對照在計畫裡。

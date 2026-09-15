@@ -82,7 +82,7 @@ A typical exchange:
 >
 > **You**: Nothing missed, just run.
 >
-> **Claude**: (dispatches 3 agents, each reading the context-pack and the spec; a few minutes later)
+> **Claude**: (dispatches 3 agents, each reading the context-pack (the digest file from step 1) and the spec; a few minutes later)
 > Merged. Change plan written to `docs/specs/2026-09-15-refund-flow-design-change-plan.md`.
 > 2 items need your decision (listed first):
 > 🔴 §3.2 "auto-approve refunds after 7 days" contradicts the acceptance criteria in §5 — if left as is, the implementer picks one and the tests for the other side stay red forever. Before → after is in the plan.
