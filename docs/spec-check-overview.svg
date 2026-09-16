@@ -44,17 +44,17 @@
 <text class="f tb" x="394" y="310" font-size="14" font-weight="700" text-anchor="start">③ 派 3–5 個獨立 agent 並行審（沒看過對話、只讀不寫）</text>
 <text class="f tb" x="394" y="328" font-size="11.5" text-anchor="start">每條發現必引章節行號、必答「不修會發生什麼具體失敗」、最多 5 條</text>
 <rect class="sub" x="394" y="349" width="137" height="66" rx="5"/>
-<text class="f tb" x="463" y="365" font-size="11.5" font-weight="700" text-anchor="middle">完整性 ×1</text>
-<text class="f tb" x="463" y="379" font-size="10.5" text-anchor="middle">矛盾、模糊句</text>
-<text class="f tb" x="463" y="394" font-size="10.5" text-anchor="middle">驗收寫不清</text>
+<text class="f tb" x="463" y="363" font-size="11.5" font-weight="700" text-anchor="middle">完整性 ×1</text>
+<text class="f tb" x="463" y="383" font-size="10.5" text-anchor="middle">矛盾、模糊句</text>
+<text class="f tb" x="463" y="398" font-size="10.5" text-anchor="middle">驗收寫不清</text>
 <rect class="sub" x="541" y="349" width="137" height="66" rx="5"/>
-<text class="f tb" x="610" y="365" font-size="11.5" font-weight="700" text-anchor="middle">premortem ×1–3</text>
-<text class="f tb" x="610" y="379" font-size="10.5" text-anchor="middle">「假設做完後失敗了，</text>
-<text class="f tb" x="610" y="394" font-size="10.5" text-anchor="middle">從你的面向解釋為什麼」</text>
+<text class="f tb" x="610" y="363" font-size="11.5" font-weight="700" text-anchor="middle">premortem ×1–3</text>
+<text class="f tb" x="610" y="383" font-size="10.5" text-anchor="middle">「假設做完後失敗了，</text>
+<text class="f tb" x="610" y="398" font-size="10.5" text-anchor="middle">從你的面向解釋為什麼」</text>
 <rect class="sub" x="689" y="349" width="137" height="66" rx="5"/>
-<text class="f tb" x="757" y="365" font-size="11.5" font-weight="700" text-anchor="middle">砍項 ×1（必選）</text>
-<text class="f tb" x="757" y="379" font-size="10.5" text-anchor="middle">「第一版不需要什麼？</text>
-<text class="f tb" x="757" y="394" font-size="10.5" text-anchor="middle">刪掉會怎樣？」</text>
+<text class="f tb" x="757" y="363" font-size="11.5" font-weight="700" text-anchor="middle">砍項 ×1（必選）</text>
+<text class="f tb" x="757" y="383" font-size="10.5" text-anchor="middle">「第一版不需要什麼？</text>
+<text class="f tb" x="757" y="398" font-size="10.5" text-anchor="middle">刪掉會怎樣？」</text>
 <rect class="box" x="380" y="443" width="460" height="55" rx="6"/>
 <text class="f tb" x="394" y="465" font-size="14" font-weight="700" text-anchor="start">④ 彙整與查證（Claude 親做，不外包）</text>
 <text class="f tb" x="394" y="483" font-size="11.5" text-anchor="start">去重、需裁決項全數查證據、每條「建議新增」反問「第一版不加會怎樣」</text>

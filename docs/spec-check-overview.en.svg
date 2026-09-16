@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 729" width="1200" height="729" role="img" aria-labelledby="t d">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 743" width="1200" height="743" role="img" aria-labelledby="t d">
 <title id="t">What spec-check does: you hand it a spec, it hands back a change plan</title>
 <desc id="d">Three columns. Left: inputs (the spec, decisions already settled in conversation, supporting files). Middle: four steps (inventory into a context-pack, one confirmation with you, 3 to 5 independent read-only agents reviewing in parallel, merge and verify). Right: outputs (change plan, audit context) with a note that the spec itself is never edited.</desc>
 <style>
@@ -44,36 +44,37 @@
 <text class="f tb" x="394" y="262" font-size="11.5" text-anchor="start">Did it miss any material? An ASCII picture of the spec (did it misread</text>
 <text class="f tb" x="394" y="277" font-size="11.5" text-anchor="start">you?) Pick 1 to 3 review aspects</text>
 <text class="f tb" x="394" y="292" font-size="11.5" text-anchor="start">Say &quot;just run&quot; to skip</text>
-<rect class="box" x="380" y="333" width="460" height="192" rx="6"/>
+<rect class="box" x="380" y="333" width="460" height="206" rx="6"/>
 <text class="f tb" x="394" y="355" font-size="14" font-weight="700" text-anchor="start">3 Dispatches 3 to 5 independent agents in parallel (fresh</text>
 <text class="f tb" x="394" y="373" font-size="14" font-weight="700" text-anchor="start">context, read only)</text>
 <text class="f tb" x="394" y="391" font-size="11.5" text-anchor="start">Every finding cites a section and line, states what breaks if ignored, max 5</text>
 <text class="f tb" x="394" y="406" font-size="11.5" text-anchor="start">per agent</text>
-<rect class="sub" x="394" y="427" width="137" height="96" rx="5"/>
-<text class="f tb" x="463" y="443" font-size="11.5" font-weight="700" text-anchor="middle">Completeness x1</text>
-<text class="f tb" x="463" y="457" font-size="10.5" text-anchor="middle">contradictions, vague</text>
-<text class="f tb" x="463" y="472" font-size="10.5" text-anchor="middle">lines,</text>
-<text class="f tb" x="463" y="487" font-size="10.5" text-anchor="middle">untestable acceptance</text>
-<rect class="sub" x="541" y="427" width="137" height="96" rx="5"/>
-<text class="f tb" x="610" y="443" font-size="11.5" font-weight="700" text-anchor="middle">Premortem x1 to 3</text>
-<text class="f tb" x="610" y="457" font-size="10.5" text-anchor="middle">&quot;Assume it shipped and</text>
-<text class="f tb" x="610" y="472" font-size="10.5" text-anchor="middle">failed.</text>
-<text class="f tb" x="610" y="487" font-size="10.5" text-anchor="middle">Explain why from your</text>
-<text class="f tb" x="610" y="502" font-size="10.5" text-anchor="middle">angle.&quot;</text>
-<rect class="sub" x="689" y="427" width="137" height="96" rx="5"/>
-<text class="f tb" x="757" y="443" font-size="11.5" font-weight="700" text-anchor="middle">Cut scope x1 (always)</text>
-<text class="f tb" x="757" y="457" font-size="10.5" text-anchor="middle">&quot;What does v1 not</text>
-<text class="f tb" x="757" y="472" font-size="10.5" text-anchor="middle">need?</text>
-<text class="f tb" x="757" y="487" font-size="10.5" text-anchor="middle">What happens if we drop</text>
-<text class="f tb" x="757" y="502" font-size="10.5" text-anchor="middle">it?&quot;</text>
-<rect class="box" x="380" y="551" width="460" height="88" rx="6"/>
-<text class="f tb" x="394" y="573" font-size="14" font-weight="700" text-anchor="start">4 Merges and verifies (Claude does this itself, never</text>
-<text class="f tb" x="394" y="591" font-size="14" font-weight="700" text-anchor="start">delegated)</text>
-<text class="f tb" x="394" y="609" font-size="11.5" text-anchor="start">Deduplicates, checks evidence for every item you must decide, asks &quot;what</text>
-<text class="f tb" x="394" y="624" font-size="11.5" text-anchor="start">if v1 skips this&quot; for every addition</text>
+<rect class="sub" x="394" y="427" width="137" height="110" rx="5"/>
+<text class="f tb" x="463" y="441" font-size="11.5" font-weight="700" text-anchor="middle">Completeness x1</text>
+<text class="f tb" x="463" y="461" font-size="10.5" text-anchor="middle">contradictions, vague</text>
+<text class="f tb" x="463" y="476" font-size="10.5" text-anchor="middle">lines,</text>
+<text class="f tb" x="463" y="491" font-size="10.5" text-anchor="middle">untestable acceptance</text>
+<rect class="sub" x="541" y="427" width="137" height="110" rx="5"/>
+<text class="f tb" x="610" y="441" font-size="11.5" font-weight="700" text-anchor="middle">Premortem x1 to 3</text>
+<text class="f tb" x="610" y="461" font-size="10.5" text-anchor="middle">&quot;Assume it shipped and</text>
+<text class="f tb" x="610" y="476" font-size="10.5" text-anchor="middle">failed.</text>
+<text class="f tb" x="610" y="491" font-size="10.5" text-anchor="middle">Explain why from your</text>
+<text class="f tb" x="610" y="506" font-size="10.5" text-anchor="middle">angle.&quot;</text>
+<rect class="sub" x="689" y="427" width="137" height="110" rx="5"/>
+<text class="f tb" x="757" y="441" font-size="11.5" font-weight="700" text-anchor="middle">Cut scope x1</text>
+<text class="f tb" x="757" y="455" font-size="11.5" font-weight="700" text-anchor="middle">(always)</text>
+<text class="f tb" x="757" y="475" font-size="10.5" text-anchor="middle">&quot;What does v1 not</text>
+<text class="f tb" x="757" y="490" font-size="10.5" text-anchor="middle">need?</text>
+<text class="f tb" x="757" y="505" font-size="10.5" text-anchor="middle">What happens if we drop</text>
+<text class="f tb" x="757" y="520" font-size="10.5" text-anchor="middle">it?&quot;</text>
+<rect class="box" x="380" y="565" width="460" height="88" rx="6"/>
+<text class="f tb" x="394" y="587" font-size="14" font-weight="700" text-anchor="start">4 Merges and verifies (Claude does this itself, never</text>
+<text class="f tb" x="394" y="605" font-size="14" font-weight="700" text-anchor="start">delegated)</text>
+<text class="f tb" x="394" y="623" font-size="11.5" text-anchor="start">Deduplicates, checks evidence for every item you must decide, asks &quot;what</text>
+<text class="f tb" x="394" y="638" font-size="11.5" text-anchor="start">if v1 skips this&quot; for every addition</text>
 <line class="ln" x1="610" y1="196" x2="610" y2="220" marker-end="url(#arr)"/>
 <line class="ln" x1="610" y1="307" x2="610" y2="331" marker-end="url(#arr)"/>
-<line class="ln" x1="610" y1="525" x2="610" y2="549" marker-end="url(#arr)"/>
+<line class="ln" x1="610" y1="539" x2="610" y2="563" marker-end="url(#arr)"/>
 <path class="doc" d="M880,96 h268 l12,12 v83 h-280 z"/><path class="doc" d="M1148,96 v12 h12"/>
 <text class="f tb" x="894" y="116" font-size="12" font-weight="700" text-anchor="start">change-plan.md</text>
 <text class="f tb" x="894" y="131" font-size="12" text-anchor="start">Items that need your decision come</text>
@@ -89,16 +90,16 @@
 <text class="f tb" x="894" y="323" font-size="12" text-anchor="start">Edits happen only after you approve,</text>
 <text class="f tb" x="894" y="338" font-size="12" text-anchor="start">one item at a time, each one verified</text>
 <path class="ln" d="M340,210 H360 V146 H378" marker-end="url(#arr)"/>
-<path class="ln" d="M840,595 H852 V144 H878" marker-end="url(#arr)"/>
+<path class="ln" d="M840,609 H852 V144 H878" marker-end="url(#arr)"/>
 <path class="lnd" d="M840,146 H862 V240 H878" marker-end="url(#arr)"/>
-<rect class="col" x="28" y="56" width="324" height="619" fill="none" rx="8"/>
-<rect class="col" x="368" y="56" width="484" height="619" fill="none" rx="8"/>
-<rect class="col" x="868" y="56" width="304" height="619" fill="none" rx="8"/>
+<rect class="col" x="28" y="56" width="324" height="633" fill="none" rx="8"/>
+<rect class="col" x="368" y="56" width="484" height="633" fill="none" rx="8"/>
+<rect class="col" x="868" y="56" width="304" height="633" fill="none" rx="8"/>
 <text class="f t" x="190" y="76" font-size="14" font-weight="700" text-anchor="middle">You give it</text>
 <text class="f t" x="190" y="90" font-size="10.5" text-anchor="middle">input</text>
 <text class="f t" x="610" y="76" font-size="14" font-weight="700" text-anchor="middle">What it does</text>
 <text class="f t" x="610" y="90" font-size="10.5" text-anchor="middle">processing</text>
 <text class="f t" x="1020" y="76" font-size="14" font-weight="700" text-anchor="middle">You get back</text>
 <text class="f t" x="1020" y="90" font-size="10.5" text-anchor="middle">output</text>
-<text class="f t" x="40" y="705" font-size="11" text-anchor="start">spec-check does not review code, judge whether a project is worth doing, or write the plan. One job: before a spec gets built, agents that never saw your conversation try to break it.</text>
+<text class="f t" x="40" y="719" font-size="11" text-anchor="start">spec-check does not review code, judge whether a project is worth doing, or write the plan. One job: before a spec gets built, agents that never saw your conversation try to break it.</text>
 </svg>
