@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" role="img" aria-labelledby="title desc">
-  <title id="title">spec-check 流程總圖</title>
-  <desc id="desc">三條泳道（用戶、指揮官、agents）上的五步流程：素材盤點、單一確認點、並行派工、彙整裁決、修改計畫；底部標示 spec-check 在 brainstorming 與 writing-plans 之間的定位。</desc>
-  <style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 588" width="1200" height="588" role="img" aria-labelledby="t d">
+<title id="t">spec-check 做什麼：你給它一份 spec，它還你一份修改計畫</title>
+<desc id="d">三欄：左欄輸入（spec、已拍板決策、素材檔）；中欄四步處理（盤點寫 context-pack、一次確認、派 3–5 個獨立 agent 並行審、彙整查證據）；右欄輸出（修改計畫、稽核上下文），並標示它不會直接改 spec。</desc>
+<style>
     .f { font-family: -apple-system, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Helvetica, Arial, sans-serif; }
     .t { fill: #6B7280; }
     .tb { fill: #1F2937; }
@@ -9,148 +9,81 @@
     .lnd { stroke: #6B7280; stroke-width: 1.4; fill: none; stroke-dasharray: 5 4; }
     .box { fill: #F9FAFB; stroke: #9CA3AF; stroke-width: 1.4; }
     .doc { fill: #FFFFFF; stroke: #6B7280; stroke-width: 1.4; }
-    .hi { fill: #FDE9CC; stroke: #C8892B; stroke-width: 2; }
-    .lane { stroke: #9CA3AF; stroke-width: 1; stroke-opacity: 0.6; }
-    .grp { fill: none; stroke: #4A6FA5; stroke-width: 1.4; stroke-dasharray: 6 4; }
+    .hi { fill: #FDE9CC; stroke: #C8892B; stroke-width: 1.6; }
+    .col { stroke: #9CA3AF; stroke-width: 1; stroke-opacity: 0.6; }
+    .sub { fill: #EEF3FA; stroke: #4A6FA5; stroke-width: 1.2; }
     @media (prefers-color-scheme: dark) {
       .t { fill: #9CA3AF; }
       .ln, .lnd { stroke: #9CA3AF; }
-      .lane { stroke: #6B7280; }
+      .col { stroke: #6B7280; }
     }
-  </style>
-  <defs>
-    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#6B7280"/>
-    </marker>
-  </defs>
-
-  <!-- 標題 -->
-  <text class="f t" x="120" y="36" font-size="20" font-weight="700">spec-check：spec 定稿前，先讓獨立 agents 找碴，裁決留給人</text>
-  <text class="f t" x="120" y="54" font-size="12">Audit a spec before it is implemented: parallel read-only agents find the holes, a human decides.</text>
-
-  <!-- 泳道 -->
-  <rect class="lane" x="120" y="66" width="1060" height="120" fill="#C8892B" fill-opacity="0.07" rx="4"/>
-  <rect class="lane" x="120" y="196" width="1060" height="140" fill="#6B7280" fill-opacity="0.07" rx="4"/>
-  <rect class="lane" x="120" y="346" width="1060" height="130" fill="#4A6FA5" fill-opacity="0.08" rx="4"/>
-
-  <!-- 泳道標籤 -->
-  <rect x="14" y="66" width="96" height="120" rx="4" fill="#FDE9CC"/>
-  <text class="f tb" x="62" y="120" font-size="15" font-weight="700" text-anchor="middle">用戶</text>
-  <text class="f tb" x="62" y="140" font-size="12" text-anchor="middle">User</text>
-
-  <rect x="14" y="196" width="96" height="140" rx="4" fill="#E5E7EB"/>
-  <text class="f tb" x="62" y="256" font-size="15" font-weight="700" text-anchor="middle">指揮官</text>
-  <text class="f tb" x="62" y="276" font-size="12" text-anchor="middle">Commander</text>
-  <text class="f tb" x="62" y="292" font-size="11" text-anchor="middle">（主對話）</text>
-
-  <rect x="14" y="346" width="96" height="130" rx="4" fill="#DCE6F5"/>
-  <text class="f tb" x="62" y="400" font-size="15" font-weight="700" text-anchor="middle">Agents</text>
-  <text class="f tb" x="62" y="420" font-size="12" text-anchor="middle">只讀・不寫</text>
-  <text class="f tb" x="62" y="436" font-size="11" text-anchor="middle">fresh context</text>
-
-  <!-- ① 素材盤點 -->
-  <rect class="box" x="150" y="226" width="170" height="80" rx="6"/>
-  <text class="f tb" x="235" y="252" font-size="14" font-weight="700" text-anchor="middle">① 素材盤點</text>
-  <text class="f tb" x="235" y="270" font-size="12" text-anchor="middle">Inventory</text>
-  <text class="f tb" x="235" y="290" font-size="11" text-anchor="middle">已定決策・未核准段落・素材路徑</text>
-
-  <!-- context-pack 文件 -->
-  <path class="doc" d="M340,262 h84 l12,12 v46 h-96 z"/>
-  <path class="doc" d="M424,262 v12 h12"/>
-  <text class="f tb" x="388" y="292" font-size="11" font-weight="700" text-anchor="middle">context-pack</text>
-  <text class="f tb" x="388" y="308" font-size="10" text-anchor="middle">稽核上下文.md</text>
-  <line class="ln" x1="320" y1="286" x2="338" y2="286" marker-end="url(#arr)"/>
-
-  <!-- ② 單一確認點 -->
-  <rect class="box" x="160" y="90" width="200" height="72" rx="6"/>
-  <text class="f tb" x="260" y="114" font-size="14" font-weight="700" text-anchor="middle">② 單一確認點</text>
-  <text class="f tb" x="260" y="132" font-size="12" text-anchor="middle">Confirm once</text>
-  <text class="f tb" x="260" y="150" font-size="11" text-anchor="middle">素材清單・現況圖・勾面向</text>
-  <line class="ln" x1="235" y1="226" x2="235" y2="164" marker-end="url(#arr)"/>
-
-  <!-- ② → ③ -->
-  <path class="ln" d="M360,126 H535 V224" marker-end="url(#arr)"/>
-  <text class="f t" x="448" y="118" font-size="11" text-anchor="middle">可說「直接跑」跳過 / or just run</text>
-
-  <!-- ③ 並行派工 -->
-  <rect class="box" x="450" y="226" width="170" height="80" rx="6"/>
-  <text class="f tb" x="535" y="252" font-size="14" font-weight="700" text-anchor="middle">③ 並行派工</text>
-  <text class="f tb" x="535" y="270" font-size="12" text-anchor="middle">Dispatch 3–5 agents</text>
-  <text class="f tb" x="535" y="290" font-size="11" text-anchor="middle">附錄 A 範本・給 context-pack</text>
-  <line class="ln" x1="535" y1="306" x2="535" y2="358" marker-end="url(#arr)"/>
-
-  <!-- agents 群組 -->
-  <rect class="grp" x="410" y="360" width="580" height="104" rx="8"/>
-  <text class="f t" x="420" y="376" font-size="10">並行 parallel</text>
-
-  <rect class="box" x="430" y="382" width="165" height="70" rx="6"/>
-  <text class="f tb" x="512" y="404" font-size="13" font-weight="700" text-anchor="middle">完整性審查 ×1</text>
-  <text class="f tb" x="512" y="421" font-size="11" text-anchor="middle">Completeness (opus)</text>
-  <text class="f tb" x="512" y="438" font-size="10" text-anchor="middle">矛盾・模糊句・驗收盲區</text>
-
-  <rect class="box" x="615" y="382" width="165" height="70" rx="6"/>
-  <text class="f tb" x="697" y="404" font-size="13" font-weight="700" text-anchor="middle">premortem ×1–3</text>
-  <text class="f tb" x="697" y="421" font-size="11" text-anchor="middle">Per-aspect (sonnet)</text>
-  <text class="f tb" x="697" y="438" font-size="10" text-anchor="middle">「做完後專案為何失敗？」</text>
-
-  <rect class="box" x="800" y="382" width="165" height="70" rx="6"/>
-  <text class="f tb" x="882" y="404" font-size="13" font-weight="700" text-anchor="middle">砍項 ×1（必選）</text>
-  <text class="f tb" x="882" y="421" font-size="11" text-anchor="middle">Over-engineering (sonnet)</text>
-  <text class="f tb" x="882" y="438" font-size="10" text-anchor="middle">「第一版不需要什麼？」</text>
-
-  <!-- agents 規則註記 -->
-  <text class="f t" x="1010" y="392" font-size="11">每條 finding：</text>
-  <text class="f t" x="1010" y="408" font-size="11">・引章節與行號</text>
-  <text class="f t" x="1010" y="424" font-size="11">・答「不修會怎樣」</text>
-  <text class="f t" x="1010" y="440" font-size="11">・最多 5 條・不改 spec</text>
-  <text class="f t" x="1010" y="456" font-size="11">・已定決策不重審</text>
-
-  <!-- agents → ④ -->
-  <path class="ln" d="M990,412 H1000 V308" marker-end="url(#arr)"/>
-
-  <!-- ④ 彙整裁決 -->
-  <rect class="box" x="880" y="226" width="170" height="80" rx="6"/>
-  <text class="f tb" x="965" y="252" font-size="14" font-weight="700" text-anchor="middle">④ 彙整裁決</text>
-  <text class="f tb" x="965" y="270" font-size="12" text-anchor="middle">Merge &amp; verify</text>
-  <text class="f tb" x="965" y="290" font-size="11" text-anchor="middle">去重・抽驗證據・分級</text>
-
-  <!-- ⑤ 修改計畫 文件 -->
-  <line class="ln" x1="1050" y1="266" x2="1072" y2="266" marker-end="url(#arr)"/>
-  <path class="doc" d="M1076,236 h80 l12,12 v52 h-92 z"/>
-  <path class="doc" d="M1156,236 v12 h12"/>
-  <text class="f tb" x="1122" y="262" font-size="11" font-weight="700" text-anchor="middle">⑤ 修改計畫</text>
-  <text class="f tb" x="1122" y="277" font-size="10" text-anchor="middle">change plan .md</text>
-  <text class="f tb" x="1122" y="292" font-size="10" text-anchor="middle">before → after</text>
-
-  <!-- ⑤ → 裁決 -->
-  <line class="ln" x1="1122" y1="236" x2="1122" y2="164" marker-end="url(#arr)"/>
-  <rect class="hi" x="1000" y="90" width="170" height="72" rx="6"/>
-  <text class="f tb" x="1085" y="114" font-size="14" font-weight="700" text-anchor="middle">裁決 Decide</text>
-  <text class="f tb" x="1085" y="132" font-size="11" text-anchor="middle">需裁決項排最前</text>
-  <text class="f tb" x="1085" y="150" font-size="11" text-anchor="middle">核准後才動 spec</text>
-
-  <!-- 定位帶 -->
-  <text class="f t" x="14" y="530" font-size="13" font-weight="700">定位</text>
-  <text class="f t" x="14" y="548" font-size="11">Where it sits</text>
-
-  <rect class="box" x="150" y="506" width="200" height="50" rx="6"/>
-  <text class="f tb" x="250" y="527" font-size="13" font-weight="700" text-anchor="middle">brainstorming</text>
-  <text class="f tb" x="250" y="545" font-size="11" text-anchor="middle">寫 spec · write the spec</text>
-  <line class="ln" x1="350" y1="531" x2="398" y2="531" marker-end="url(#arr)"/>
-
-  <rect class="hi" x="400" y="506" width="200" height="50" rx="6"/>
-  <text class="f tb" x="500" y="527" font-size="13" font-weight="700" text-anchor="middle">spec-check</text>
-  <text class="f tb" x="500" y="545" font-size="11" text-anchor="middle">驗 spec · audit the spec</text>
-  <line class="ln" x1="600" y1="531" x2="648" y2="531" marker-end="url(#arr)"/>
-
-  <rect class="box" x="650" y="506" width="200" height="50" rx="6"/>
-  <text class="f tb" x="750" y="527" font-size="13" font-weight="700" text-anchor="middle">writing-plans</text>
-  <text class="f tb" x="750" y="545" font-size="11" text-anchor="middle">產 plan · write the plan</text>
-  <line class="ln" x1="850" y1="531" x2="898" y2="531" marker-end="url(#arr)"/>
-
-  <rect class="box" x="900" y="506" width="200" height="50" rx="6"/>
-  <text class="f tb" x="1000" y="527" font-size="13" font-weight="700" text-anchor="middle">code-review</text>
-  <text class="f tb" x="1000" y="545" font-size="11" text-anchor="middle">審 code · review the code</text>
-
-  <text class="f t" x="150" y="584" font-size="11">spec-check 不審 code、不評估專案該不該做、不產 plan——只做一件事：spec 被實作前，先被獨立 agents 找碴。</text>
+</style>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6B7280"/></marker></defs>
+<text class="f t" x="40" y="30" font-size="20" font-weight="700" text-anchor="start">spec-check 做什麼：你給它一份 spec，它還你一份修改計畫</text>
+<text class="f t" x="40" y="48" font-size="12" text-anchor="start">Claude Code skill · 輸入 → 處理 → 輸出</text>
+<path class="doc" d="M40,96 h288 l12,12 v53 h-300 z"/><path class="doc" d="M328,96 v12 h12"/>
+<text class="f tb" x="54" y="116" font-size="12" font-weight="700" text-anchor="start">spec.md</text>
+<text class="f tb" x="54" y="131" font-size="12" text-anchor="start">設計文件或需求文件，任何長度</text>
+<text class="f tb" x="54" y="146" font-size="12" text-anchor="start">（越長越值得跑）</text>
+<path class="doc" d="M40,177 h288 l12,12 v53 h-300 z"/><path class="doc" d="M328,177 v12 h12"/>
+<text class="f tb" x="54" y="197" font-size="12" font-weight="700" text-anchor="start">對話裡已拍板的決策</text>
+<text class="f tb" x="54" y="212" font-size="12" text-anchor="start">例：「退款只支援原路退回」</text>
+<text class="f tb" x="54" y="227" font-size="12" text-anchor="start">這些不准被重審</text>
+<path class="doc" d="M40,258 h288 l12,12 v38 h-300 z"/><path class="doc" d="M328,258 v12 h12"/>
+<text class="f tb" x="54" y="278" font-size="12" font-weight="700" text-anchor="start">素材檔（可選）</text>
+<text class="f tb" x="54" y="293" font-size="12" text-anchor="start">資料、既有文件、相關紀錄</text>
+<rect class="box" x="380" y="96" width="460" height="70" rx="6"/>
+<text class="f tb" x="394" y="118" font-size="14" font-weight="700" text-anchor="start">① 盤點素材，寫成 context-pack</text>
+<text class="f tb" x="394" y="136" font-size="11.5" text-anchor="start">列出：已定決策、spec 有寫但你還沒核准的段落、待定項、素材路徑</text>
+<text class="f tb" x="394" y="151" font-size="11.5" text-anchor="start">之後所有 agent 共用這一份，不各自重讀（省 token 的主因）</text>
+<rect class="hi" x="380" y="192" width="460" height="70" rx="6"/>
+<text class="f tb" x="394" y="214" font-size="14" font-weight="700" text-anchor="start">② 給你看一次，只等你一次</text>
+<text class="f tb" x="394" y="232" font-size="11.5" text-anchor="start">素材清單有沒有漏？一張 ASCII 現況圖（有讀錯嗎？）勾 1–3 個審查面向</text>
+<text class="f tb" x="394" y="247" font-size="11.5" text-anchor="start">你可以說「直接跑」跳過</text>
+<rect class="box" x="380" y="288" width="460" height="129" rx="6"/>
+<text class="f tb" x="394" y="310" font-size="14" font-weight="700" text-anchor="start">③ 派 3–5 個獨立 agent 並行審（沒看過對話、只讀不寫）</text>
+<text class="f tb" x="394" y="328" font-size="11.5" text-anchor="start">每條發現必引章節行號、必答「不修會發生什麼具體失敗」、最多 5 條</text>
+<rect class="sub" x="394" y="349" width="137" height="66" rx="5"/>
+<text class="f tb" x="463" y="365" font-size="11.5" font-weight="700" text-anchor="middle">完整性 ×1</text>
+<text class="f tb" x="463" y="379" font-size="10.5" text-anchor="middle">矛盾、模糊句</text>
+<text class="f tb" x="463" y="394" font-size="10.5" text-anchor="middle">驗收寫不清</text>
+<rect class="sub" x="541" y="349" width="137" height="66" rx="5"/>
+<text class="f tb" x="610" y="365" font-size="11.5" font-weight="700" text-anchor="middle">premortem ×1–3</text>
+<text class="f tb" x="610" y="379" font-size="10.5" text-anchor="middle">「假設做完後失敗了，</text>
+<text class="f tb" x="610" y="394" font-size="10.5" text-anchor="middle">從你的面向解釋為什麼」</text>
+<rect class="sub" x="689" y="349" width="137" height="66" rx="5"/>
+<text class="f tb" x="757" y="365" font-size="11.5" font-weight="700" text-anchor="middle">砍項 ×1（必選）</text>
+<text class="f tb" x="757" y="379" font-size="10.5" text-anchor="middle">「第一版不需要什麼？</text>
+<text class="f tb" x="757" y="394" font-size="10.5" text-anchor="middle">刪掉會怎樣？」</text>
+<rect class="box" x="380" y="443" width="460" height="55" rx="6"/>
+<text class="f tb" x="394" y="465" font-size="14" font-weight="700" text-anchor="start">④ 彙整與查證（Claude 親做，不外包）</text>
+<text class="f tb" x="394" y="483" font-size="11.5" text-anchor="start">去重、需裁決項全數查證據、每條「建議新增」反問「第一版不加會怎樣」</text>
+<line class="ln" x1="610" y1="166" x2="610" y2="190" marker-end="url(#arr)"/>
+<line class="ln" x1="610" y1="262" x2="610" y2="286" marker-end="url(#arr)"/>
+<line class="ln" x1="610" y1="417" x2="610" y2="441" marker-end="url(#arr)"/>
+<path class="doc" d="M880,96 h268 l12,12 v68 h-280 z"/><path class="doc" d="M1148,96 v12 h12"/>
+<text class="f tb" x="894" y="116" font-size="12" font-weight="700" text-anchor="start">修改計畫.md</text>
+<text class="f tb" x="894" y="131" font-size="12" text-anchor="start">需你裁決的排最前</text>
+<text class="f tb" x="894" y="146" font-size="12" text-anchor="start">每項附 before → after 對照</text>
+<text class="f tb" x="894" y="161" font-size="12" text-anchor="start">每項附「不修會怎樣」</text>
+<path class="doc" d="M880,192 h268 l12,12 v53 h-280 z"/><path class="doc" d="M1148,192 v12 h12"/>
+<text class="f tb" x="894" y="212" font-size="12" font-weight="700" text-anchor="start">稽核上下文.md</text>
+<text class="f tb" x="894" y="227" font-size="12" text-anchor="start">步驟 ① 的素材摘要</text>
+<text class="f tb" x="894" y="242" font-size="12" text-anchor="start">留作稽核軌跡</text>
+<rect class="hi" x="880" y="273" width="280" height="50" rx="6"/>
+<text class="f tb" x="894" y="293" font-size="12" font-weight="700" text-anchor="start">你的 spec 一個字都沒被動</text>
+<text class="f tb" x="894" y="308" font-size="12" text-anchor="start">你核准後，才逐項改、逐項驗</text>
+<path class="ln" d="M340,202 H360 V131 H378" marker-end="url(#arr)"/>
+<path class="ln" d="M840,470 H852 V136 H878" marker-end="url(#arr)"/>
+<path class="lnd" d="M840,131 H862 V224 H878" marker-end="url(#arr)"/>
+<rect class="col" x="28" y="56" width="324" height="478" fill="none" rx="8"/>
+<rect class="col" x="368" y="56" width="484" height="478" fill="none" rx="8"/>
+<rect class="col" x="868" y="56" width="304" height="478" fill="none" rx="8"/>
+<text class="f t" x="190" y="76" font-size="14" font-weight="700" text-anchor="middle">你給它</text>
+<text class="f t" x="190" y="90" font-size="10.5" text-anchor="middle">輸入</text>
+<text class="f t" x="610" y="76" font-size="14" font-weight="700" text-anchor="middle">它做什麼</text>
+<text class="f t" x="610" y="90" font-size="10.5" text-anchor="middle">處理</text>
+<text class="f t" x="1020" y="76" font-size="14" font-weight="700" text-anchor="middle">你拿到</text>
+<text class="f t" x="1020" y="90" font-size="10.5" text-anchor="middle">輸出</text>
+<text class="f t" x="40" y="564" font-size="11" text-anchor="start">spec-check 不審程式碼、不評估專案該不該做、不寫實作計畫。它只做一件事：spec 被實作之前，先被幾個沒看過你對話的人找碴。</text>
 </svg>

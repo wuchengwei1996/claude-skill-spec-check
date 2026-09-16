@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 729" width="1200" height="729" role="img" aria-labelledby="t d">
+<title id="t">What spec-check does: you hand it a spec, it hands back a change plan</title>
+<desc id="d">Three columns. Left: inputs (the spec, decisions already settled in conversation, supporting files). Middle: four steps (inventory into a context-pack, one confirmation with you, 3 to 5 independent read-only agents reviewing in parallel, merge and verify). Right: outputs (change plan, audit context) with a note that the spec itself is never edited.</desc>
+<style>
+    .f { font-family: -apple-system, "Segoe UI", "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", Helvetica, Arial, sans-serif; }
+    .t { fill: #6B7280; }
+    .tb { fill: #1F2937; }
+    .ln { stroke: #6B7280; stroke-width: 1.6; fill: none; }
+    .lnd { stroke: #6B7280; stroke-width: 1.4; fill: none; stroke-dasharray: 5 4; }
+    .box { fill: #F9FAFB; stroke: #9CA3AF; stroke-width: 1.4; }
+    .doc { fill: #FFFFFF; stroke: #6B7280; stroke-width: 1.4; }
+    .hi { fill: #FDE9CC; stroke: #C8892B; stroke-width: 1.6; }
+    .col { stroke: #9CA3AF; stroke-width: 1; stroke-opacity: 0.6; }
+    .sub { fill: #EEF3FA; stroke: #4A6FA5; stroke-width: 1.2; }
+    @media (prefers-color-scheme: dark) {
+      .t { fill: #9CA3AF; }
+      .ln, .lnd { stroke: #9CA3AF; }
+      .col { stroke: #6B7280; }
+    }
+</style>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6B7280"/></marker></defs>
+<text class="f t" x="40" y="30" font-size="20" font-weight="700" text-anchor="start">What spec-check does: you hand it a spec, it hands back a change plan</text>
+<text class="f t" x="40" y="48" font-size="12" text-anchor="start">Claude Code skill · input, processing, output</text>
+<path class="doc" d="M40,96 h288 l12,12 v68 h-300 z"/><path class="doc" d="M328,96 v12 h12"/>
+<text class="f tb" x="54" y="116" font-size="12" font-weight="700" text-anchor="start">spec.md</text>
+<text class="f tb" x="54" y="131" font-size="12" text-anchor="start">A design or requirements document, any</text>
+<text class="f tb" x="54" y="146" font-size="12" text-anchor="start">length</text>
+<text class="f tb" x="54" y="161" font-size="12" text-anchor="start">(the longer it is, the more it pays off)</text>
+<path class="doc" d="M40,192 h288 l12,12 v53 h-300 z"/><path class="doc" d="M328,192 v12 h12"/>
+<text class="f tb" x="54" y="212" font-size="12" font-weight="700" text-anchor="start">Decisions already settled in chat</text>
+<text class="f tb" x="54" y="227" font-size="12" text-anchor="start">e.g. &quot;refunds go back to the original card&quot;</text>
+<text class="f tb" x="54" y="242" font-size="12" text-anchor="start">These are off limits for the reviewers</text>
+<path class="doc" d="M40,273 h288 l12,12 v38 h-300 z"/><path class="doc" d="M328,273 v12 h12"/>
+<text class="f tb" x="54" y="293" font-size="12" font-weight="700" text-anchor="start">Supporting files (optional)</text>
+<text class="f tb" x="54" y="308" font-size="12" text-anchor="start">data, existing docs, related notes</text>
+<rect class="box" x="380" y="96" width="460" height="100" rx="6"/>
+<text class="f tb" x="394" y="118" font-size="14" font-weight="700" text-anchor="start">1 Inventory the material into a context-pack</text>
+<text class="f tb" x="394" y="136" font-size="11.5" text-anchor="start">Lists settled decisions, sections you have not approved yet, open items,</text>
+<text class="f tb" x="394" y="151" font-size="11.5" text-anchor="start">file paths</text>
+<text class="f tb" x="394" y="166" font-size="11.5" text-anchor="start">Every agent reads this one file instead of re-reading everything (the main</text>
+<text class="f tb" x="394" y="181" font-size="11.5" text-anchor="start">token saver)</text>
+<rect class="hi" x="380" y="222" width="460" height="85" rx="6"/>
+<text class="f tb" x="394" y="244" font-size="14" font-weight="700" text-anchor="start">2 Shows you once, waits once</text>
+<text class="f tb" x="394" y="262" font-size="11.5" text-anchor="start">Did it miss any material? An ASCII picture of the spec (did it misread</text>
+<text class="f tb" x="394" y="277" font-size="11.5" text-anchor="start">you?) Pick 1 to 3 review aspects</text>
+<text class="f tb" x="394" y="292" font-size="11.5" text-anchor="start">Say &quot;just run&quot; to skip</text>
+<rect class="box" x="380" y="333" width="460" height="192" rx="6"/>
+<text class="f tb" x="394" y="355" font-size="14" font-weight="700" text-anchor="start">3 Dispatches 3 to 5 independent agents in parallel (fresh</text>
+<text class="f tb" x="394" y="373" font-size="14" font-weight="700" text-anchor="start">context, read only)</text>
+<text class="f tb" x="394" y="391" font-size="11.5" text-anchor="start">Every finding cites a section and line, states what breaks if ignored, max 5</text>
+<text class="f tb" x="394" y="406" font-size="11.5" text-anchor="start">per agent</text>
+<rect class="sub" x="394" y="427" width="137" height="96" rx="5"/>
+<text class="f tb" x="463" y="443" font-size="11.5" font-weight="700" text-anchor="middle">Completeness x1</text>
+<text class="f tb" x="463" y="457" font-size="10.5" text-anchor="middle">contradictions, vague</text>
+<text class="f tb" x="463" y="472" font-size="10.5" text-anchor="middle">lines,</text>
+<text class="f tb" x="463" y="487" font-size="10.5" text-anchor="middle">untestable acceptance</text>
+<rect class="sub" x="541" y="427" width="137" height="96" rx="5"/>
+<text class="f tb" x="610" y="443" font-size="11.5" font-weight="700" text-anchor="middle">Premortem x1 to 3</text>
+<text class="f tb" x="610" y="457" font-size="10.5" text-anchor="middle">&quot;Assume it shipped and</text>
+<text class="f tb" x="610" y="472" font-size="10.5" text-anchor="middle">failed.</text>
+<text class="f tb" x="610" y="487" font-size="10.5" text-anchor="middle">Explain why from your</text>
+<text class="f tb" x="610" y="502" font-size="10.5" text-anchor="middle">angle.&quot;</text>
+<rect class="sub" x="689" y="427" width="137" height="96" rx="5"/>
+<text class="f tb" x="757" y="443" font-size="11.5" font-weight="700" text-anchor="middle">Cut scope x1 (always)</text>
+<text class="f tb" x="757" y="457" font-size="10.5" text-anchor="middle">&quot;What does v1 not</text>
+<text class="f tb" x="757" y="472" font-size="10.5" text-anchor="middle">need?</text>
+<text class="f tb" x="757" y="487" font-size="10.5" text-anchor="middle">What happens if we drop</text>
+<text class="f tb" x="757" y="502" font-size="10.5" text-anchor="middle">it?&quot;</text>
+<rect class="box" x="380" y="551" width="460" height="88" rx="6"/>
+<text class="f tb" x="394" y="573" font-size="14" font-weight="700" text-anchor="start">4 Merges and verifies (Claude does this itself, never</text>
+<text class="f tb" x="394" y="591" font-size="14" font-weight="700" text-anchor="start">delegated)</text>
+<text class="f tb" x="394" y="609" font-size="11.5" text-anchor="start">Deduplicates, checks evidence for every item you must decide, asks &quot;what</text>
+<text class="f tb" x="394" y="624" font-size="11.5" text-anchor="start">if v1 skips this&quot; for every addition</text>
+<line class="ln" x1="610" y1="196" x2="610" y2="220" marker-end="url(#arr)"/>
+<line class="ln" x1="610" y1="307" x2="610" y2="331" marker-end="url(#arr)"/>
+<line class="ln" x1="610" y1="525" x2="610" y2="549" marker-end="url(#arr)"/>
+<path class="doc" d="M880,96 h268 l12,12 v83 h-280 z"/><path class="doc" d="M1148,96 v12 h12"/>
+<text class="f tb" x="894" y="116" font-size="12" font-weight="700" text-anchor="start">change-plan.md</text>
+<text class="f tb" x="894" y="131" font-size="12" text-anchor="start">Items that need your decision come</text>
+<text class="f tb" x="894" y="146" font-size="12" text-anchor="start">first</text>
+<text class="f tb" x="894" y="161" font-size="12" text-anchor="start">Each one shows before and after</text>
+<text class="f tb" x="894" y="176" font-size="12" text-anchor="start">Each one states what breaks if ignored</text>
+<path class="doc" d="M880,207 h268 l12,12 v53 h-280 z"/><path class="doc" d="M1148,207 v12 h12"/>
+<text class="f tb" x="894" y="227" font-size="12" font-weight="700" text-anchor="start">audit-context.md</text>
+<text class="f tb" x="894" y="242" font-size="12" text-anchor="start">The digest from step 1</text>
+<text class="f tb" x="894" y="257" font-size="12" text-anchor="start">Kept as the audit trail</text>
+<rect class="hi" x="880" y="288" width="280" height="65" rx="6"/>
+<text class="f tb" x="894" y="308" font-size="12" font-weight="700" text-anchor="start">Your spec is untouched</text>
+<text class="f tb" x="894" y="323" font-size="12" text-anchor="start">Edits happen only after you approve,</text>
+<text class="f tb" x="894" y="338" font-size="12" text-anchor="start">one item at a time, each one verified</text>
+<path class="ln" d="M340,210 H360 V146 H378" marker-end="url(#arr)"/>
+<path class="ln" d="M840,595 H852 V144 H878" marker-end="url(#arr)"/>
+<path class="lnd" d="M840,146 H862 V240 H878" marker-end="url(#arr)"/>
+<rect class="col" x="28" y="56" width="324" height="619" fill="none" rx="8"/>
+<rect class="col" x="368" y="56" width="484" height="619" fill="none" rx="8"/>
+<rect class="col" x="868" y="56" width="304" height="619" fill="none" rx="8"/>
+<text class="f t" x="190" y="76" font-size="14" font-weight="700" text-anchor="middle">You give it</text>
+<text class="f t" x="190" y="90" font-size="10.5" text-anchor="middle">input</text>
+<text class="f t" x="610" y="76" font-size="14" font-weight="700" text-anchor="middle">What it does</text>
+<text class="f t" x="610" y="90" font-size="10.5" text-anchor="middle">processing</text>
+<text class="f t" x="1020" y="76" font-size="14" font-weight="700" text-anchor="middle">You get back</text>
+<text class="f t" x="1020" y="90" font-size="10.5" text-anchor="middle">output</text>
+<text class="f t" x="40" y="705" font-size="11" text-anchor="start">spec-check does not review code, judge whether a project is worth doing, or write the plan. One job: before a spec gets built, agents that never saw your conversation try to break it.</text>
+</svg>

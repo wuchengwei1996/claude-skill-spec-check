@@ -1,4 +1,4 @@
-# spec-check
+# spec-check: a Claude Code skill that lets independent AI agents pick a spec apart before it gets built
 
 English · [繁體中文](README.md)
 
@@ -6,136 +6,125 @@ English · [繁體中文](README.md)
 
 First published 2026-09-15 · Last synced 2026-09-15
 
-**Before a spec is finalized, let several independent AI agents pick it apart, then you decide. The output is a change plan — the skill never edits your spec.**
+spec-check is a Claude Code skill that also runs in Codex CLI. You hand it a spec, a design document or a requirements document. It dispatches 3 to 5 AI agents that never saw your conversation to review it in parallel, then hands back a change plan. The spec itself is never edited; changes wait for your approval and are applied one item at a time.
 
-> The skill body (`SKILL.md`) is written in Traditional Chinese. Claude reads it fine regardless of the language you chat in; this README tells you what it does and how to install it.
+The skill body (`SKILL.md`) is written in Traditional Chinese. Claude reads it fine whatever language you chat in. This page explains what it does and how to install it.
 
-## What is a skill?
+## The thirty second version
 
-A Claude Code skill is just a folder with a `SKILL.md` that tells Claude *when* to use it and *what steps* to follow.
-Drop it into `~/.claude/skills/` and Claude loads it automatically whenever the situation matches its description; you can also invoke it by typing `/spec-check`.
-This repo *is* that folder — clone it and you are done; nothing else to install.
+- 3 to 5 independent agents review in parallel. Each returns at most 5 findings, each finding cites a section and line and states what breaks if it is ignored.
+- One agent is always assigned to cut scope: it looks for things version 1 does not need.
+- You show up twice: once to confirm the inputs, once to decide.
+- All agents share one context-pack (the digest written in step 1) instead of re-reading everything. The author measured a single agent re-reading on its own at roughly 100K tokens.
+- The output is a change plan with before and after for each item, not an edited spec.
 
-## The picture
+## What is a Claude Code skill?
 
-![spec-check overview](docs/spec-check-overview.svg)
+A skill is a folder with a `SKILL.md` that tells Claude when to use it and what steps to follow. Drop it into `~/.claude/skills/` and Claude loads it whenever a conversation matches its description; you can also invoke it by typing `/spec-check`. This repository is that folder. Clone it and you are done. Anthropic documents the format in the [Agent Skills docs](https://docs.claude.com/en/docs/claude-code/skills).
 
-Three swim lanes. **You** appear at exactly two points (confirm the inputs, make the final call). The **commander** (the Claude you are talking to) inventories, dispatches and merges. The **agents** are throw-away independent reviewers that can read but never write.
+## What does spec-check do? One picture
 
-## The problem it solves
+![spec-check overview: inputs on the left (the spec and decisions already settled), four processing steps in the middle (inventory into a context-pack, one confirmation with you, 3 to 5 independent agents reviewing in parallel, merge and verify), outputs on the right (change plan and audit context). The spec itself is untouched.](docs/spec-check-overview.en.svg)
 
-**Scenario 1: you finish a spec and ask an AI to "take a look".**
-It returns 11 suggestions. All 11 say "consider adding X". Zero say "cut Y". You accept them, the spec grows from 200 to 350 lines, and half of it turns out to be over-engineering once you build it.
-(Not hypothetical — that was the measured baseline before this skill existed.)
+Left is what you give it, middle is the four steps it runs, right is what you get back. The amber boxes are where you appear.
 
-**Scenario 2: you spend an hour with the AI, settle three decisions, then ask it to review the spec.**
-First finding: "Reconsider decision A." You decided that ten minutes ago.
-Worse: one section of the spec was drafted by the AI and you never approved it — the review treats it as settled fact and skips it.
+## What problem does it solve?
 
-spec-check puts a hard constraint on each of these failures: a **mandatory "cut scope" reviewer**, **every finding must answer "what concretely breaks if we don't fix this"**, **settled decisions are off-limits**, and **unapproved sections are listed separately**.
+You finish a spec and ask an AI to take a look. It returns 11 suggestions, every one of them "consider adding X", none of them "this can go". You accept them all, the spec grows from 200 to 350 lines, and halfway through the build you find that half of it was over-engineering. That was the author's measured baseline in August 2026, before this skill existed: 11 suggestions, zero cuts.
 
-## Why not just use X
+The other case: you spend an hour with the AI, settle three decisions, then ask it to review the spec. The first finding is "reconsider decision A", which you made ten minutes ago. Worse, one section of the spec was drafted by the AI and you never approved it, and the review treats it as settled.
+
+spec-check puts a hard rule on each failure: a cut-scope agent is mandatory; every finding must state what breaks if it is ignored; settled decisions are off limits; sections you have not approved are listed separately.
+
+## How is it different from asking Claude to review the spec?
 
 | Alternative | What it does | What spec-check adds | What you lose without it |
 |---|---|---|---|
-| Asking the AI "review this spec" | A list of suggestions | Mandatory cut-scope reviewer; every finding must state the concrete failure; settled decisions are not re-litigated; produces a change plan instead of editing the spec | All findings are additions; freshly-made decisions get reopened; the spec gets edited with no decision trail |
-| superpowers `brainstorming` Spec Self-Review | The author checks 4 items and fixes inline | Fresh-context agents that **never saw the conversation**; per-aspect premortem ("assume the project failed after building this — why?"); the commander spot-checks evidence; a human decides | You cannot see your own blind spots; there is no "why did it fail" scenario |
-| superpowers `writing-plans` self-review / `requesting-code-review` | Checks the plan covers the spec / reviews the code diff | Questions **the spec itself** | A wrong spec gets implemented faithfully |
+| Asking the AI "review this spec" | A list of suggestions | A mandatory cut-scope agent; every finding states the concrete failure; settled decisions stay settled; a change plan instead of an edited spec | Every finding is an addition; fresh decisions get reopened; the spec gets edited with no decision trail |
+| The brainstorming self-review in superpowers ([obra/superpowers](https://github.com/obra/superpowers)) | The author checks 4 items and fixes inline | Agents that never saw the conversation; a premortem per aspect (assume the project shipped and failed, why); Claude spot-checks the evidence; a human decides | You cannot see your own blind spots; nobody asks why it would fail |
+| The writing-plans self-review and requesting-code-review in superpowers | Checks that the plan covers the spec; reviews the code diff | Questions the spec itself | A wrong spec gets implemented faithfully |
 
-In one line: other tools check "did we follow the spec"; spec-check checks "should the spec say this at all".
+Other tools check whether the work follows the spec. spec-check checks whether the spec should say this at all.
 
-## Install
+## How do I install it?
 
-The folder name must be `spec-check` (it has to match `name` in `SKILL.md`), otherwise Claude will not find it.
+The folder name must be `spec-check` to match `name` in `SKILL.md`, otherwise Claude will not find it.
 
-**Claude Code — global (available in every project)**
+Claude Code, global (available in every project):
 
 ```bash
 git clone https://github.com/wuchengwei1996/claude-skill-spec-check.git ~/.claude/skills/spec-check
 ```
 
-**Claude Code — one project only**
+Claude Code, one project only:
 
 ```bash
 git clone https://github.com/wuchengwei1996/claude-skill-spec-check.git .claude/skills/spec-check
 ```
 
-**Codex CLI**
+Codex CLI:
 
 ```bash
 git clone https://github.com/wuchengwei1996/claude-skill-spec-check.git ~/.codex/skills/spec-check
 ```
 
-**Check it works**: type `/` in Claude Code — `spec-check` should appear in the menu. Or just say "check this spec" and see whether it takes over.
+To check it works, type `/` in Claude Code and look for `spec-check` in the menu, or just say "check this spec" and see whether it takes over. Update with `cd ~/.claude/skills/spec-check && git pull`.
 
-**Update**: `cd ~/.claude/skills/spec-check && git pull`
+## How do I trigger it?
 
-## How to trigger it
-
-Any of these will do: "check this spec", "audit this spec", "run a premortem on this spec", or simply `/spec-check`.
-
-A typical exchange:
+Say "check this spec", "audit this spec" or "run a premortem on this spec", or type `/spec-check`. A typical exchange:
 
 > **You**: /spec-check docs/specs/refund-flow-design.md
 >
-> **Claude**: Read it. Here is what I inventoried (list)…
-> Here is the current state as I understand it (an ASCII flow chart) — did I misread anything?
-> This spec is process-heavy; I suggest the "user scenarios" and "data & integration" aspects, plus the mandatory "cut scope" one. Anything I missed?
+> **Claude**: Read it. Here is what I inventoried (list). Here is the current state as I understand it, as an ASCII flow chart. Did I misread anything? This spec is process heavy; I suggest the "user scenarios" and "data and integration" aspects, plus the mandatory cut-scope one. Anything I missed?
 >
 > **You**: Nothing missed, just run.
 >
-> **Claude**: (dispatches 3 agents, each reading the context-pack (the digest file from step 1) and the spec; a few minutes later)
-> Merged. Change plan written to `docs/specs/2026-09-15-refund-flow-design-change-plan.md`.
-> 2 items need your decision (listed first):
-> 🔴 §3.2 "auto-approve refunds after 7 days" contradicts the acceptance criteria in §5 — if left as is, the implementer picks one and the tests for the other side stay red forever. Before → after is in the plan.
-> 🔴 Cut: §6 "multi-currency refunds" is not used by any scenario in v1 — keeping it costs 3 tables and 2 endpoints nobody calls.
-> 3 🟡 recommendations and 1 🟢 note follow. Once you approve, I will apply the changes to the spec one by one.
+> **Claude**: (dispatches 3 agents, each reading the context-pack and the spec; a few minutes later)
+> Merged. The change plan is at `docs/specs/2026-09-15-refund-flow-design-change-plan.md`. Two items need your decision, listed first:
+> 🔴 §3.2 "auto-approve refunds after 7 days" contradicts the acceptance criteria in §5. If left as is, the implementer picks one and the tests for the other side stay red. Before and after are in the plan.
+> 🔴 Cut: §6 "multi-currency refunds" is not used by any scenario in v1. Keeping it costs 3 tables and 2 endpoints nobody calls.
+> 3 🟡 recommendations and 1 🟢 note follow. Once you approve, I apply the changes to the spec one by one.
 
-Note the last line: **it never edits the spec on its own** — it waits for your go.
+The last line matters: it does not edit the spec on its own. It waits for you.
 
-## How it works (matches the diagram)
+## How does it work inside?
 
-1. **Inventory → context-pack**: read the spec; list settled decisions, sections that exist in the spec but you have not approved, open items, and input file paths. Write it to a `<spec>-audit-context.md`. This pre-digested file is shared by all agents so 3–5 of them do not each re-read everything (measured: one agent re-reading everything on its own costs ~100K tokens; sharing is the main cost saver).
-2. **Single confirmation point**: one message with three things — the inventory, an ASCII picture of the current state, and the aspect menu — and it waits for you exactly once. The picture exists so you can tell in 10 seconds whether Claude misread the spec; a misread means the wrong agents get dispatched. You can say "just run" to skip.
-3. **Parallel dispatch**: completeness reviewer ×1 (contradictions, ambiguous sentences, untestable acceptance criteria), premortem per aspect ×1–3 ("assume the project failed after building exactly this spec — explain why from your aspect"), cut-scope reviewer ×1 mandatory ("what does v1 not need? what happens if we delete it?"). Every agent gets the same context-pack, is read-only, must cite section and line for every finding, max 5 findings. Prompt templates are in `SKILL.md` Appendix A.
-4. **Merge and decide**: done by the commander, never delegated — deduplicate, verify evidence for every 🔴 and at least one 🟡/🟢, and for every "add X" ask "what breaks if v1 does not have it".
-5. **Change plan**: `YYYY-MM-DD-<spec>-change-plan.md`, 🔴 decisions first, each with a before → after side-by-side. Format in `SKILL.md` Appendix B.
+The four steps in the picture above.
 
-## Optional integrations
+1. Inventory the material into a context-pack. Read the spec, list the settled decisions, the sections you have not approved, open items and file paths, and write them to an audit-context file. Every agent reads this one file instead of re-reading everything.
+2. Show you once, wait once. One message with three things: the inventory, an ASCII picture of the current state, and the aspect menu. The picture exists so you can tell in ten seconds whether Claude misread the spec, because a misread dispatches the wrong reviewers. You can say "just run" to skip.
+3. Dispatch 3 to 5 independent agents in parallel. One completeness reviewer (contradictions, vague sentences, untestable acceptance criteria), one to three premortem reviewers (assume the project shipped from exactly this spec and failed, explain why from your angle), one cut-scope reviewer (what does v1 not need, what happens if we drop it). Every agent is read only, cites section and line for every finding, and returns at most 5. The prompt templates are in `SKILL.md`, appendix A.
+4. Merge and verify. Claude does this itself. Deduplicate, check the evidence for every item that needs your decision and at least one of the rest, and ask "what if v1 skips this" for every suggested addition. Then write the change plan, decisions first, each with before and after. The format is in `SKILL.md`, appendix B.
 
-- **superpowers**: spec-check is designed to sit after `brainstorming` (write the spec) and before `writing-plans` (write the plan), but it does not depend on them — it works standalone.
-- **Model routing**: `SKILL.md` suggests opus for the completeness reviewer and sonnet for the rest. That is a suggestion; use whatever models your environment has.
+## When should I not use it?
 
-## Customize
+- You want code reviewed, not a spec: use a code review tool.
+- You are still deciding whether the project is worth doing: spec-check assumes you have decided to build it.
+- You want an implementation plan: that is a planning tool's job; spec-check only audits the spec.
+- The spec is a few dozen lines: asking Claude directly is probably faster. The skill pays off once a spec is too big for one reader to hold in their head.
 
-- **Aspect menu**: step 2's list (feasibility / user scenarios / frontend / backend / data & integration / operations / cost & schedule) — add or remove for your domain.
-- **Agent count**: step 3's sizing rule (spec < 200 lines → 3 agents) is adjustable.
-- **Change-plan format**: Appendix B is the author's house style (human layer on top, machine layer below, 😣/🎯 opener). Swap in your own.
+## What can I customize?
 
-## FAQ
+The aspect menu in step 2 of `SKILL.md` (feasibility, user scenarios, frontend, backend, data and integration, operations, cost and schedule) can be edited for your domain. The sizing rule in step 3 (specs under 200 lines get 3 agents) is adjustable. Appendix B is the author's house format for change plans; swap in your own. The model routing (opus for completeness, sonnet for the rest) is a suggestion; use whatever models your environment has.
 
-**Will it edit my spec?**
-No. It produces a change plan; edits happen only after you approve, item by item, with a read-back check afterwards.
+## Frequently asked questions
 
-**Does it need superpowers?**
-No. superpowers is mentioned in the description only to say "writing the plan is not this skill's job".
+Will it edit my spec? No. The output is a change plan. Edits happen after you approve, one item at a time, and each one is read back to verify.
 
-**Why write a context-pack first instead of dispatching agents directly?**
-Two reasons: token cost (agents share one pre-digested file instead of each re-reading everything) and protecting settled decisions (the context-pack lists them as "settled", and agents may not overturn them).
+Does it need superpowers? No. The description mentions superpowers only to say that writing the plan is somebody else's job.
 
-**Is it worth running on a short spec?**
-A few dozen lines usually needs only 3 agents (completeness + cut-scope + one aspect). Shorter than that, asking Claude directly may be faster — the skill pays off once a spec is too big for one reader to hold in their head.
+Why write a context-pack first instead of dispatching agents directly? Two reasons: token cost, since agents share one digest instead of each re-reading everything, and protecting settled decisions, since the context-pack lists them and agents may not overturn them.
 
-**Which models do the agents use? Is opus required?**
-Not required. The templates in Appendix A are model-agnostic; opus/sonnet is just the author's suggested routing.
+Which models do the agents use? Is opus required? No. The templates in appendix A are model agnostic.
 
-## Series
+How long does a run take? It depends on the spec length and the agent count. The author's test on a 30 line spec with 3 agents took about 5 minutes.
 
-Two more skills by the same author:
+## Other skills by the same author
 
-- [claude-skill-explain](https://github.com/wuchengwei1996/claude-skill-explain): find the comprehension gap first, then pick the explanation method — not "say it again, longer".
-- [claude-skill-show](https://github.com/wuchengwei1996/claude-skill-show): understand the information first, decide how to show it, then actually produce and read back the result.
+- [claude-skill-explain](https://github.com/wuchengwei1996/claude-skill-explain): finds which kind of comprehension gap you are stuck on before choosing how to explain; when you say "still unclear" it switches method instead of writing the same thing longer.
+- [claude-skill-show](https://github.com/wuchengwei1996/claude-skill-show): reads the data first, decides between a chart, a diagram and a table, then reads its own output back before calling it done.
 
-## License
+## License and sources
 
-MIT
+MIT. The skill format follows Anthropic's [Agent Skills docs](https://docs.claude.com/en/docs/claude-code/skills). The brainstorming and writing-plans skills mentioned in the comparison table are from [obra/superpowers](https://github.com/obra/superpowers).
